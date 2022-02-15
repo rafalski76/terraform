@@ -1,13 +1,11 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "aspyatkin/ubuntu-20.04-server"
-
-#   config.vm.network "private_network", type: "dhcp"
+  config.vm.box = "ubuntu/focal64"
 
   config.vm.provider "virtualbox" do |v|
     v.gui = false
     v.linked_clone = true
-
     v.check_guest_additions = true
+	
     if Vagrant.has_plugin?("vagrant-vbguest") then
       config.vbguest.auto_update = false
     end

@@ -36,3 +36,4 @@ terraform.rc
 
 ###
 .vagrant
+.vagrant-provision/aws/*
