@@ -10,4 +10,6 @@ terraform init
 terraform plan
 terraform apply
 
+ssh ubuntu@18.130.83.156
+
 ```
