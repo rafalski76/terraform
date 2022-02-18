@@ -20,7 +20,7 @@ gcloud iam service-accounts keys create prod-svc-creds.json --iam-account=prod-s
 5. Set GCP Credentials:
 `set GOOGLE_APPLICATION_CREDENTIALS=prod-svc-creds.json`
 
-6. Bootstrap state bucket
+6. Bootstrap bucket for terraform state 
 `gsutil mb -p szkola-chmury-proj gs://szkola-chmury-bucket`
 
 7. Run init
