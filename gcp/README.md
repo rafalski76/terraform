@@ -20,17 +20,20 @@ gcloud iam service-accounts keys create prod-svc-creds.json --iam-account=prod-s
 5. Set GCP Credentials:
 `set GOOGLE_APPLICATION_CREDENTIALS=prod-svc-creds.json`
 
-6. Run init
+6. Bootstrap state bucket
+`gsutil mb -p szkola-chmury-proj gs://szkola-chmury-bucket`
+
+7. Run init
 `terraform init`
 
-7. Run Validate
+8. Run Validate
 `terraform validate`
 
-8. Run Apply
+9. Run Apply
 `terraform apply`
 
-9. Connect to vm
+10. Connect to vm
 `ssh -i gcp_vm rafal@34.118.123.34`
 
-10. Run Destroy
+11. Run Destroy
 `terraform destroy`
