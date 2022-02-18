@@ -23,3 +23,9 @@ resource "google_compute_instance" "this" {
 
   metadata_startup_script = "sudo apt-get update; echo 'Hello World!' >> /home/${var.username}/startup"
 }
+
+// Enable Cloud Run service
+resource "google_project_service" "gcp_services" {
+  project = "szkola-chmury-proj"
+  service = "run.googleapis.com"
+}
