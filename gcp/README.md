@@ -33,7 +33,7 @@ gcloud iam service-accounts keys create prod-svc-creds.json --iam-account=prod-s
 `terraform apply`
 
 10. Connect to vm
-`ssh -i gcp_vm rafal@34.118.123.34`
+`ssh -i vm-gcp rafal@34.118.123.34`
 
 11. Run Destroy
 `terraform destroy`
