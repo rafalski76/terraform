@@ -1,6 +1,6 @@
 resource "google_compute_instance" "this" {
   provider     = google
-  name         = "tf-instance"
+  name         = "vm-gcp"
   machine_type = "e2-micro"
   zone         = "europe-central2-a"
 
@@ -18,7 +18,7 @@ resource "google_compute_instance" "this" {
   }
 
   metadata = {
-    ssh-keys = "${var.username}:${file("~/.ssh/gcp_vm.pub")}"
+    ssh-keys = "${var.username}:${file("~/.ssh/vm-gcp.pub")}"
   }
 
   metadata_startup_script = "sudo apt-get update; echo 'Hello World!' >> /home/${var.username}/startup"
