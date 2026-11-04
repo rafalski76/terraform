@@ -1,21 +1,21 @@
 provider "aws" {
-	region = "eu-west-3"
+  region = "eu-west-3"
 }
 
 resource "aws_instance" "test" {
-#	ami = "ami-0015a39e4b7c0966f"
-	ami = data.aws_ami.ubuntu.id
-	instance_type = "t2.micro"
- 
- 	tags = {
-		Name = "RF-vm"
-	}
-	
-	key_name = aws_key_pair.rf_key_pair.key_name
- 
-	subnet_id = module.vpc.public_subnets[0]
-	
-	vpc_security_group_ids = [aws_security_group.all_access.id]
+  #	ami = "ami-0015a39e4b7c0966f"
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+
+  tags = {
+    Name = "RF-vm"
+  }
+
+  key_name = aws_key_pair.rf_key_pair.key_name
+
+  subnet_id = module.vpc.public_subnets[0]
+
+  vpc_security_group_ids = [aws_security_group.all_access.id]
 }
 
 #variable "key" {
@@ -24,36 +24,36 @@ resource "aws_instance" "test" {
 #}
 
 locals {
-	ssh_public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOpS2EOuMMOoQZsouT7X7BMXNMA2ecD42Y4aRTDc6HeX runner"
+  ssh_public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOpS2EOuMMOoQZsouT7X7BMXNMA2ecD42Y4aRTDc6HeX runner"
 }
 
 resource "aws_key_pair" "rf_key_pair" {
-	public_key = local.ssh_public_key
-	key_name = "RF-key"
+  public_key = local.ssh_public_key
+  key_name   = "RF-key"
 }
 
 resource "aws_security_group" "all_access" {
-	name = "RF-sg"
-	vpc_id = module.vpc.vpc_id
-	
-	ingress {
-		from_port = 0
-		protocol = "ALL"
-		to_port = 0
-		cidr_blocks = ["0.0.0.0/0"]
-	}
-	egress {
-		from_port = 0
-		protocol = "ALL"
-		to_port = 0	
-		cidr_blocks = ["0.0.0.0/0"]		
-	}
+  name   = "RF-sg"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port   = 0
+    protocol    = "ALL"
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    protocol    = "ALL"
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-  version = "3.12.0"
-  
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 6.0"
+
   name = "rf-vpc"
   cidr = "10.11.0.0/16"
 

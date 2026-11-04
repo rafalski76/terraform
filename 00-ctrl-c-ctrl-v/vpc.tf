@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 3.0"
+  version = "~> 6.0"
 
   name            = "nowe-vpc"
   cidr            = "10.11.0.0/16"
