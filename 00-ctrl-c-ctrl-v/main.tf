@@ -6,7 +6,7 @@ provider "aws" {
 
 resource "aws_instance" "test" {
   ami           = "ami-0d527b8c289b4af7f"
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   key_name = aws_key_pair.this.key_name
 

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "4.0.0"
+      version = "~> 6.0"
     }
   }
 }
@@ -29,7 +29,7 @@ resource "aws_security_group" "this" {
 
 resource "aws_instance" "this" {
   ami           = var.ami
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
 
   key_name = var.key_pair_name
 
